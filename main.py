@@ -2,14 +2,10 @@ import discord
 import asyncio
 from discord import app_commands
 from discord.ext import commands
-from moderation import warn_user, removewarn_user, timeout_user, removetimeout_user, ban_user, unban_user
-from datetime import timedelta
+from moderation import checkwarns_user, warn_user, removewarn_user, timeout_user, removetimeout_user, ban_user, unban_user
 
 # bot token goes here - make sure to remove before pushing to github
 tok = ''
-
-# warns dict - contains user ID's + their respective warns
-warns = {}
 
 # discord intents
 intents = discord.Intents.default()
@@ -29,10 +25,18 @@ async def ping_bot(interaction):
 # bot functions
 @bot.event
 async def on_ready():
+    bot.tree.clear_commands(guild=discord.Object(id=1238267373908262982))
     print(f'Logged in as {bot.user}')
     bot.tree.add_command(ping_bot)
-    guild = discord.Object(id=1238267373908262982)
-    await bot.tree.sync(guild=guild)
+    bot.tree.add_command(checkwarns_user)
+    bot.tree.add_command(warn_user)
+    bot.tree.add_command(removewarn_user)
+    bot.tree.add_command(timeout_user)
+    bot.tree.add_command(removetimeout_user)
+    bot.tree.add_command(ban_user)
+    bot.tree.add_command(unban_user)
+    await bot.tree.sync(guild=discord.Object(id=1238267373908262982))
+    await bot.tree.sync()
     print('Running')
 # end def on_ready()
 
