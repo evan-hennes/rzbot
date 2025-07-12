@@ -1,9 +1,9 @@
 requirements
-- warn/timeout users
-- ban users
-- remove warns from users
+- warn/timeout users - DONE
+- ban users - DONE
+- remove warns from users - DONE
 - log moderation actions in designated channel
-- create report of warns for users (incl. ID, date, warning mod, reason)
+- create report of warns for users (incl. ID, date, warning mod, reason) - DONE
 - designate users as troublemakers and automatically time them out for warns
 - self log warns - include attachments
 - create reports of mod actions over set of dates
